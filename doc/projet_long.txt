@@ -1,0 +1,65 @@
+.en entrée on met des poches protéiques qui interagissent avec des ligands.
+.Le but est de dire si une poche est plutot druggable par un nucléotides, par un héme, ou autre (plusieurs classes).
+.Fpocket extrait les poches des protéines (outil utilisé dans l'article).
+.On va travailler avec HME (rapport avec l'hémoglobine) et l'Adénosine.
+.Pour nous, les poches seront données.
+.Elles seront présentées au réseau de neurone et il y auras une prédiction de classe.
+.Le réseau va travaille sur une image cubique (pas de pixel mais un volume: un voxel) de la protéine.
+.Un voxel fait 32x32x32, c'est un pixel3D (cube).
+.Les protéines sont donc mises dans des boites (voxel)
+.Ce qui est en rouge dans la figure 1 est ce qui est supprimé à chaque fois.
+.En vert c'est ce qu'on garde, c'est les points qui sont a proximité des atomes qui sont a proximité des atomes des ligands (là on a une interaction possible)
+.Ainsi on garde que les atomes proches du site d'interaction supposé
+.--> On a un nuage de billes vertes qui représente le site d'interaction.
+.Pour le ligand on va considérer 14 types d'atomes différents pouvant le constituer
+.Le programme part d'un potentiel (gradient du potentiel = Force, et une force est lié a une accélération, cf 2e loi de Newton), on va calculer ainsila frce d'interaction avec le ligand: pour chaque bille vete on met un des 14 atomes dedans et on va calculer le potentiel d'interaction que la protéine exerce sur cet atome a cet endroit là.
+.C'est le potentiel satistique DFIRE.
+.Donc pour chaque bille il y a 14 DFIRE calculé (un par type d'atome) (14 canaux)
+.Donc 14*32*32*32
+.Spéciale dedic' a Julie et Myriam <3
+.Je fixe le premier indice (première boucle): i (type d'atome)
+.Puis coordonnées x,y,z (coordonnées dans la boite).
+.(i,j,k,l) -> valeur de potentiel pour un type d'atome i dans la cellule de coordonnée j,k,l.
+.Les fichiers qu'on va recevoir sont des fichiers numpy.
+.en R : liibrary (reticulate) pour importer numpy.
+.On va nous donner 1200 fichier numpy (les points vert de la fig 1).
+.Pour chaque bille verte on calcule 14 valeurs de potentiels.
+.les protéines ne sont pas homologue et dont les ligands ne sont pas les même.
+.Convolution 3D
+.La pipeline de la fig2 est réalisable mais trop longue en temps de calcul: il va falloir réduire le problème , faire des heuristiquels.
+.rendre un petit rapport, court (1page de présentation de la problématique, 2 pages de résultats avec un tableau avec le pourcentage d'accuracy ou bien des courbes ROC), 1 page de MAtériel et méthode, 1 page de conclusion). Donc 5 pages environ.
+.Oral (bien évidemmeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen).
+.A rendre pour le 30 octobre (envoyer le 29 au soir).
+. Au moins avoir lu l'article et tenter des trucs.
+.données à : www.dsimb.inserm.fr
+./~/gelly/data/DEEPDRUG3D/
+.y'a des fichiers avec un id PDB + un nom de chaine + numéro de pocket: c'est les fichiers des poches.
+.Keras c'est channel last
+.Là c'est channel first :(
+.Gelly l'a fait sur un jeu de donnée de 200, avec de bonnes performances
+.Les kernel c'est des petits cubes
+=========REDITE (mais de Gelly cette fois :o )
+.On garde les atomes de la protéines qui sont succeptible d'interagir avec le ligand.
+.On exclue les autres
+.On fait une grille
+.Les atomes de la protéine sont définit par la nature de la protéine et le type d'acide aminé.
+.Les hydrogènes sont implicites
+.C'est la grille qu'on va avoir dans nos données 32*32*32
+.C'est une voxrelisation: transformer un systeme continu en grille discontitnu
+.On va regarder quelle est l'affinité d'un atome pour les résidus qui l'entoure
+.Comme aspect discret, on va avoir des gradns pas.
+.potentiel DFIRE: comme DOPE: hitogramme de l'énergie en fonction de la distance entre deux atomes de deux résidus
+.**Attention** dans la boite de 32*32*32 qui contient la poche, les billes ne sont pas des atomes mais des cellules ! (Guyon a la rescousse)
+.j'ai faim
+.vecteur qui représrente les 14 energies (pour les 14 types d'atomes du ligand)
+.4D : 3D de la grille + vecteur (1D) des énérgies.
+.Le control sont des poches qui se se lient à des ligands autre que les hèmes, nucléotides, et stéroides. C'est des contrôles négatif.
+.14 canaux hein.
+.dim = (32,32,32,14).
+.optimizer = adam
+.avoir un peu de recul sur l'article
+.Faire de la cross validation
+.L'ensemble d'apprentissage n'est pas équilibré (la classe "control" contient beaucoup plus d'élément que les autres) --> va falloir pondérer.
+.Ca finit quand putain
+.Faut utiliser d'autre metrics que l'accuracy, pas juste l'accuracy.
+.
