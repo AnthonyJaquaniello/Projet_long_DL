@@ -90,3 +90,43 @@ my_model.fit(X_train[0:75:,:,:,:],one_hot_Y_train[0:75,:],epochs=10, batch_size 
           
 evaluation = my_model.evaluate(X_train, one_hot_Y_train)
 print(evaluation)
+
+tp = 0
+fp = 0
+tn = 0
+fn = 0
+
+for i in range(predictions.shape[0]):
+    maxi = max(predictions[i,:])
+    if maxi == predictions[i, 0]:
+        classe = 0
+    elif maxi == predictions[i,1]:
+        classe = 1
+    elif maxi == predictions[i,2]:
+        classe = 2
+        
+    if (one_hot_Y_test[i, 0] == 1.0) and (classe == 0):
+        tp += 1
+    elif (one_hot_Y_test[i, 1] == 1.0) and (classe == 1):
+        tp += 1
+    elif (one_hot_Y_test[i, 0] == 0.0) and (classe == 0):
+        fp += 1
+    elif (one_hot_Y_test[i, 1] == 0.0) and (classe == 1):
+        fp += 1
+    elif (one_hot_Y_test[i, 2] == 1.0) and (classe == 2):
+        tn += 1
+    elif (one_hot_Y_test[i, 2] == 0.0) and (classe == 2):
+        fn += 1
+        
+from math import sqrt
+
+print("TP:{:.2f}%".format(tp*100/len(predictions)))
+print("FP:{:.2f}%".format(fp*100/len(predictions)))
+print("TN:{:.2f}".format(tn*100/len(predictions)))
+print("FN:{:.2f}".format(fn*100/len(predictions)))
+print("ACC = {:.2f}%".format((tp+tn)*100/(tp+tn+fp+fn)))
+print("PPV = {:.2f}%".format(tp*100/(tp+fp)))
+print("TNR = {:.2f}%".format(tn*100/(tn+fp)))
+print("TPR = {:.2f}%".format(tp*100/(tp+fn)))
+print("FPR = {:.2f}%".format(fp*100/(fp+tn)))
+#print("MCC = {:.2f}".format(((tn*tp)-(fp*fn))/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))))
