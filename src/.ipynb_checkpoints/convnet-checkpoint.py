@@ -16,7 +16,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 21,
+   "execution_count": 93,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -37,7 +37,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 94,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -47,7 +47,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 95,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -88,7 +88,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 96,
    "metadata": {},
    "outputs": [
     {
@@ -206,7 +206,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 97,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -227,7 +227,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 98,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -239,7 +239,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 24,
+   "execution_count": 99,
    "metadata": {},
    "outputs": [
     {
@@ -247,41 +247,31 @@
      "output_type": "stream",
      "text": [
       "Train on 75 samples, validate on 25 samples\n",
-      "Epoch 1/10\n",
-      "75/75 [==============================] - 162s 2s/step - loss: 1.0729 - accuracy: 0.5467 - val_loss: 1.0747 - val_accuracy: 0.2400\n",
-      "Epoch 2/10\n",
-      "75/75 [==============================] - 154s 2s/step - loss: 1.0661 - accuracy: 0.5467 - val_loss: 1.0700 - val_accuracy: 0.2400\n",
-      "Epoch 3/10\n",
-      "75/75 [==============================] - 154s 2s/step - loss: 1.0623 - accuracy: 0.5467 - val_loss: 1.0656 - val_accuracy: 0.2400\n",
-      "Epoch 4/10\n",
-      "75/75 [==============================] - 154s 2s/step - loss: 1.0569 - accuracy: 0.5467 - val_loss: 1.0611 - val_accuracy: 0.2400\n",
-      "Epoch 5/10\n",
-      "75/75 [==============================] - 146s 2s/step - loss: 1.0507 - accuracy: 0.5467 - val_loss: 1.0567 - val_accuracy: 0.2400\n",
-      "Epoch 6/10\n",
-      "75/75 [==============================] - 138s 2s/step - loss: 1.0415 - accuracy: 0.5467 - val_loss: 1.0524 - val_accuracy: 0.2400\n",
-      "Epoch 7/10\n",
-      "75/75 [==============================] - 149s 2s/step - loss: 1.0402 - accuracy: 0.5467 - val_loss: 1.0484 - val_accuracy: 0.2400\n",
-      "Epoch 8/10\n",
-      "75/75 [==============================] - 147s 2s/step - loss: 1.0321 - accuracy: 0.5467 - val_loss: 1.0445 - val_accuracy: 0.2400\n",
-      "Epoch 9/10\n",
-      "75/75 [==============================] - 147s 2s/step - loss: 1.0292 - accuracy: 0.5467 - val_loss: 1.0406 - val_accuracy: 0.2400\n",
-      "Epoch 10/10\n",
-      "75/75 [==============================] - 120s 2s/step - loss: 1.0266 - accuracy: 0.5467 - val_loss: 1.0369 - val_accuracy: 0.2400\n"
+      "Epoch 1/5\n",
+      "75/75 [==============================] - 111s 1s/step - loss: 408.0952 - accuracy: 0.4133 - val_loss: 1.0984 - val_accuracy: 0.7200\n",
+      "Epoch 2/5\n",
+      "75/75 [==============================] - 121s 2s/step - loss: 1.0977 - accuracy: 0.4133 - val_loss: 1.0961 - val_accuracy: 0.7200\n",
+      "Epoch 3/5\n",
+      "75/75 [==============================] - 115s 2s/step - loss: 1.0957 - accuracy: 0.3867 - val_loss: 1.0938 - val_accuracy: 0.2400\n",
+      "Epoch 4/5\n",
+      "75/75 [==============================] - 111s 1s/step - loss: 1.0926 - accuracy: 0.5733 - val_loss: 1.0905 - val_accuracy: 0.7200\n",
+      "Epoch 5/5\n",
+      "75/75 [==============================] - 113s 2s/step - loss: 1.0895 - accuracy: 0.4533 - val_loss: 1.0870 - val_accuracy: 0.7200\n"
      ]
     },
     {
      "data": {
       "text/plain": [
-       "<keras.callbacks.callbacks.History at 0x7f7a56573b90>"
+       "<keras.callbacks.callbacks.History at 0x7f7a55ea6950>"
       ]
      },
-     "execution_count": 24,
+     "execution_count": 99,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "my_model.fit(X_train[0:75:,:,:,:],one_hot_Y_train[0:75,:],epochs=10, batch_size = 15,\n",
+    "my_model.fit(X_train[0:75:,:,:,:],one_hot_Y_train[0:75,:],epochs=5, batch_size = 15,\n",
     "          validation_data = (X_test[0:25,:,:,:,:],one_hot_Y_test[0:25,:]), callbacks = cb_list)"
    ]
   },
@@ -294,15 +284,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 25,
+   "execution_count": 100,
    "metadata": {},
    "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "127/127 [==============================] - 76s 600ms/step\n",
-      "[1.0223322872101792, 0.5354330539703369]\n"
+      "127/127 [==============================] - 71s 557ms/step\n",
+      "[1.087776902153736, 0.4094488322734833]\n"
      ]
     }
    ],
@@ -328,7 +318,12 @@
   {
    "cell_type": "code",
    "execution_count": 26,
-   "metadata": {},
+   "metadata": {
+    "collapsed": true,
+    "jupyter": {
+     "outputs_hidden": true
+    }
+   },
    "outputs": [
     {
      "ename": "TypeError",
@@ -351,6 +346,103 @@
     "print(cv_result)\n",
     "print(\"%.2f%%(%2d%%)\"%(cv_result.mean()*100, cv_result.std()*100))"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 101,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "predictions = my_model.predict(X_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "tp = 0\n",
+    "fp = 0\n",
+    "tn = 0\n",
+    "fn = 0\n",
+    "\n",
+    "for i in range(predictions.shape[0]):\n",
+    "    maxi = max(predictions[i,:])\n",
+    "    if maxi == predictions[i, 0]:\n",
+    "        classe = 0\n",
+    "    elif maxi == predictions[i,1]:\n",
+    "        classe = 1\n",
+    "    elif maxi == predictions[i,2]:\n",
+    "        classe = 2\n",
+    "        \n",
+    "    if (one_hot_Y_test[i, 0] == 1.0) and (classe == 0):\n",
+    "        tp += 1\n",
+    "    elif (one_hot_Y_test[i, 1] == 1.0) and (classe == 1):\n",
+    "        tp += 1\n",
+    "    elif (one_hot_Y_test[i, 0] == 0.0) and (classe == 0):\n",
+    "        fp += 1\n",
+    "    elif (one_hot_Y_test[i, 1] == 0.0) and (classe == 1):\n",
+    "        fp += 1\n",
+    "    elif (one_hot_Y_test[i, 2] == 1.0) and (classe == 2):\n",
+    "        tn += 1\n",
+    "    elif (one_hot_Y_test[i, 2] == 0.0) and (classe == 2):\n",
+    "        fn += 1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 104,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "TP:76.71%\n",
+      "FP:23.29%\n",
+      "TN:0.00\n",
+      "FN:0.00\n",
+      "ACC = 76.71%\n",
+      "PPV = 76.71%\n",
+      "TNR = 0.00%\n",
+      "TPR = 100.00%\n",
+      "FPR = 100.00%\n"
+     ]
+    },
+    {
+     "ename": "ZeroDivisionError",
+     "evalue": "float division by zero",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mZeroDivisionError\u001b[0m                         Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-104-4dffe200d602>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m     10\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"TPR = {:.2f}%\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtp\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;36m100\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtp\u001b[0m\u001b[0;34m+\u001b[0m\u001b[0mfn\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     11\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"FPR = {:.2f}%\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfp\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;36m100\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfp\u001b[0m\u001b[0;34m+\u001b[0m\u001b[0mtn\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 12\u001b[0;31m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"MCC = {:.2f}\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtn\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0mtp\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m-\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfp\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0mfn\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0msqrt\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtp\u001b[0m\u001b[0;34m+\u001b[0m\u001b[0mfp\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtp\u001b[0m\u001b[0;34m+\u001b[0m\u001b[0mfn\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtn\u001b[0m\u001b[0;34m+\u001b[0m\u001b[0mfp\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtn\u001b[0m\u001b[0;34m+\u001b[0m\u001b[0mfn\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mZeroDivisionError\u001b[0m: float division by zero"
+     ]
+    }
+   ],
+   "source": [
+    "from math import sqrt\n",
+    "\n",
+    "print(\"TP:{:.2f}%\".format(tp*100/len(predictions)))\n",
+    "print(\"FP:{:.2f}%\".format(fp*100/len(predictions)))\n",
+    "print(\"TN:{:.2f}\".format(tn*100/len(predictions)))\n",
+    "print(\"FN:{:.2f}\".format(fn*100/len(predictions)))\n",
+    "print(\"ACC = {:.2f}%\".format((tp+tn)*100/(tp+tn+fp+fn)))\n",
+    "print(\"PPV = {:.2f}%\".format(tp*100/(tp+fp)))\n",
+    "print(\"TNR = {:.2f}%\".format(tn*100/(tn+fp)))\n",
+    "print(\"TPR = {:.2f}%\".format(tp*100/(tp+fn)))\n",
+    "print(\"FPR = {:.2f}%\".format(fp*100/(fp+tn)))\n",
+    "print(\"MCC = {:.2f}\".format(((tn*tp)-(fp*fn))/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
   },
   {
    "cell_type": "code",
